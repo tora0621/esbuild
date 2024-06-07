@@ -1,0 +1,10 @@
+@use '/src/scss/global/setting/' as var;
+@use '/src/scss/global/mixin/' as *;
+
+// イメージ
+
+img.fit,
+picture.fit {
+  width: 100%;
+  height: auto;
+}

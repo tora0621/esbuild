@@ -1,0 +1,55 @@
+// 変数格納用ファイル
+// 変数名はロウワーキャメルケース、変数名の前に何に対する変数かコメント必須
+//
+// 例)
+// サイト内全体背景色
+// $baseBgColor: #fff;
+
+// 各デバイスのブレークポイント
+// +1はmax-width適用の為
+$breakPoint: (
+  'sumaho': 560+1,
+  'tablet': 960+1,
+  'note2': 1200+1,
+  'note': 1440+1,
+  'pc': 1920+1,
+);
+
+// 計算用のデザインPSDの実寸ピクセル幅
+$designWidth: (
+  'sumaho': 375,
+  'tablet': 768,
+  'note2': 1100,
+  'note': 1366,
+  'pc': 1920,
+);
+
+//色管理
+$siteColors: (
+  white: #ffffff,
+  white-op: rgba(255, 255, 255, 0.95),
+  black: #333333,
+  black2: #000000,
+  black-op: rgba(0, 0, 0, 0.5),
+  black-op2: rgba(0, 0, 0, 0.16),
+  main: #998376,
+  main-op: rgba(153, 131, 118, 0.5),
+  main-op1: rgba(153, 131, 118, 1),
+  main-op2: rgba(153, 131, 118, 0.25),
+  sub: #7e0f09,
+  sub-op: rgba(126, 15, 9, 0.5),
+  sub2: #f7f4ed,
+  sub2-op: rgba(247, 244, 237, 1),
+  sub3: #4f3f20,
+  sub3-op: rgba(79, 63, 32, 0.09),
+  //menubg
+  sub4: #f7f0de,
+  //枠線
+  border: #707070,
+  border2: #c0b283,
+);
+
+$animSpeed: 0.24s cubic-bezier(0.45, 0, 0.55, 1);
+
+$serif: 'Noto Serif JP', serif;
+$enfont: 'EB Garamond', serif;

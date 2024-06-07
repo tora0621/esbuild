@@ -1,0 +1,67 @@
+// 特定セレクターへの状態付与モジュール
+//
+// 参考)
+// https://hirakublog.com/sass-mixin-state/
+//
+// 例)
+// .hoge {
+//   &-inner {
+//     // body.is-home .hoge-innerの指定
+//     @include state('body', '.is-home') {
+//       margin-top: 0;
+//     }
+//     // .hoge:hover .hoge-innerの指定
+//     @include state('.hoge', ':hover') {
+//       color: #ff0000;
+//     }
+//   }
+// }
+//
+// 注意)
+// .foo, .barのようにカンマで記述したセレクター内では最後のセレクターにのみ付与される為、
+// 1つのセレクターのみに指定するようにしてください。
+// state('body', '.is-home')の場合、.foo, body.is-home .barとなってしまう。
+
+// 指定したclassがネスト内にあるかチェック
+@function is-inside($target) {
+  $replacedSelector: #{selector-replace(&, $target, '.replaced')};
+  $nestedAllSelector: #{&};
+  @return if($replacedSelector != $nestedAllSelector, true, false);
+}
+
+// ネストされたセレクターの直前の親セレクターを取得する関数
+// .hoge .hoge__box だと .hoge__box を取得
+@function parent($value) {
+  $selector: $value;
+  $array: '';
+  $space: if(str-index($selector, ' '), str-index($selector, ' '), 0); //セレクターのスペースの位置を保存※スペースがなければ0
+
+  //セレクターにスペースがあれば繰り返し
+  @while $space > 0 {
+    $selector: str-insert($selector, ',', $space); // スペースの位置に,（カンマ）を挿入
+    $array: selector-parse($selector); // 配列に変換
+    $selector: #{nth($array, length($array))}; //配列の最後を取得
+    $space: if(str-index($selector, ' '), str-index($selector, ' '), 0); // セレクターのスペースの位置を保存（スペースがなければ0）
+  }
+  @return #{$selector};
+}
+
+// ネストの中から特定のセレクターにclassやhoverを付与
+@mixin state($target, $state) {
+  // ネストの外か内を判定
+  @if is-inside($target) {
+    @at-root #{selector-replace(&, $target, $target + $state)} {
+      @content;
+    }
+  } @else {
+    @if $target == parent(#{&}) {
+      @at-root #{selector-replace(&, parent(#{&}), $target + $state)} {
+        @content;
+      }
+    } @else {
+      @at-root #{selector-replace(&, parent(#{&}), $target + $state + " " + parent(#{&}))} {
+        @content;
+      }
+    }
+  }
+}

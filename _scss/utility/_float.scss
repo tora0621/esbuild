@@ -1,0 +1,17 @@
+@use '/src/scss/global/setting/' as var;
+@use '/src/scss/global/mixin/' as *;
+
+// フロートレイアウト
+
+.fl {
+  float: left !important;
+}
+
+.fr {
+  float: right !important;
+}
+
+.fix,
+.cf {
+  @include clearfix();
+}

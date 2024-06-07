@@ -1,0 +1,14 @@
+/* src/styles.css */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+/* 任意のカスタムCSS */
+@import url("./parts/index.css");
+
+.sample {
+  color: #ffffff;
+}
+
+.test {
+  color: #333333;
+}

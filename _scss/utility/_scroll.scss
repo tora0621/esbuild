@@ -1,0 +1,13 @@
+@use '/src/scss/global/setting/' as var;
+@use '/src/scss/global/mixin/' as *;
+
+// テーブル横スクロール
+
+.scroll {
+  @include sumaho {
+    overflow: auto;
+    table {
+      white-space: nowrap;
+    }
+  }
+}
